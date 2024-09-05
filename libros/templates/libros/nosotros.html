@@ -1,0 +1,52 @@
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/nosotros.css' %}">
+{% endblock %}
+{% block content %}
+
+<!-- libros/templates/libros/nosotros.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiénes Somos</title>
+</head>
+<body>
+    <header>
+        <h1>Biblioteca CEB</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Inicio</a></li>
+                <li><a href="{% url 'libros' %}">Libros</a></li>
+                <li><a href="{% url 'nosotros' %}">Nosotros</a></li>
+                <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h1>Quiénes Somos</h1>
+            <p>Bienvenido a nuestro sistema de control de libros en línea. Somos un equipo dedicado a facilitar el acceso a una amplia gama de libros y recursos educativos para toda la comunidad. Nuestro objetivo es promover la lectura y el conocimiento mediante el uso de tecnología innovadora.</p>
+            
+            <h2>Nuestro Equipo</h2>
+            <p>Estamos conformados por un grupo de estudiantes apasionados por la educación, la tecnología y la cultura. Trabajamos juntos para ofrecer una experiencia de usuario única y para asegurar que cada persona encuentre el libro o recurso que está buscando.</p>
+
+            <h2>Nuestra Misión</h2>
+            <p>Nuestra misión es acercar el conocimiento y la cultura a todas las personas. Creemos que el acceso a la información es un derecho fundamental y trabajamos día a día para derribar las barreras que impiden que la gente acceda a los recursos que necesita.</p>
+
+            <h2>Historia</h2>
+            <p>El control de biblioteca fue fundada en 2024 con el objetivo de facilitar el control de los libros en nuestra institucion. A lo largo del los ultimos meses, hemos crecido y evolucionado, adaptándonos a los cambios tecnológicos y las necesidades de nuestros usuarios.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Biblioteca en Línea. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
+
+
+{% endblock %}

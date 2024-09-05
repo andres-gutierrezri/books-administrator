@@ -1,0 +1,142 @@
+/* Estilo general de la página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* Estilo del encabezado */
+header {
+    background-color: #000000;
+    padding: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+header h1 {
+    color: #ecf0f1;
+    font-size: 2.5em;
+    font-weight: bold;
+    margin: 0;
+}
+
+header nav {
+    margin-top: 20px;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #bdc3c7;
+    font-size: 1.2em;
+    transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+    color: #ff6f61;
+}
+/* Estilo del contenedor de libros */
+.books-section {
+    padding: 50px 0;
+    background-color: #ecf0f1;
+}
+
+.books-section h2 {
+    font-size: 2.2em;
+    color: #34495e;
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: 'Georgia', serif;
+}
+
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    justify-content: center;
+}
+
+.book-item {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.book-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+}
+
+.book-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-bottom: 3px solid #2c3e50;
+}
+
+.book-item .book-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.book-item .book-info h3 {
+    font-size: 1.5em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.book-item .book-info p {
+    font-size: 1em;
+    color: #7f8c8d;
+    margin-bottom: 20px;
+}
+
+.book-item .book-info a {
+    text-decoration: none;
+    color: #ecf0f1;
+    background-color: #2980b9;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.book-item .book-info a:hover {
+    background-color: #3498db;
+}
+
+/* Estilo del pie de página */
+footer {
+    background-color: #2c3e50;
+    padding: 20px;
+    color: #bdc3c7;
+    text-align: center;
+    border-radius: 10px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9em;
+}
+

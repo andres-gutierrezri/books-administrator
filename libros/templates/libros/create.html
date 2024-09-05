@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Libro</title>
+</head>
+<body>
+    <h1>Agregar Libro</h1>
+    <form action="{{ url_for('add_book') }}" method="POST">
+        <label for="isbn">isbn:</label>
+        <input type="text" name="isbn" id="isbn" required>
+        <label for="CodigodeBarras">CodigodeBarras:</label>
+        <input type="text" name="CodigodeBarras" id="CodigodeBarras" required>
+        <label for="NoTopografico">NoTopografico:</label>
+        <input type="text" name="NoTopografico" id="NoTopografico">
+        <label for="Titulo">Titulo:</label>
+        <input type="text" name="Titulo" id="Titulo">
+        <label for="Autor">Autor:</label>
+        <input type="text" name="Autor" id="Autor" required>
+        <label for="Ciudad">Ciudad:</label>
+        <input type="text" name="Ciudad" id="Ciudad" required>
+        <label for="Editorial">Editorial:</label>
+        <input type="text" name="Editorial" id="Editorial">
+        <label for="Fecha">Fecha:</label>
+        <input type="text" name="Fecha" id="Fecha">
+        <label for="Edicion">Edicion:</label>
+        <input type="text" name="Edicion" id="Edicion" required>
+        <label for="Pagsovols">Pagsovols:</label>
+        <input type="text" name="Pagsovols" id="Pagsovols" required>
+        <label for="Ejemplares">Ejemplares:</label>
+        <input type="text" name="Ejemplares" id="Ejemplares">
+        <label for="Genero">Genero:</label>
+        <input type="text" name="Genero" id="Genero">
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>
+

@@ -1,0 +1,46 @@
+
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+{% block content %}
+    <header>
+        <h1>Biblioteca CEB</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Inicio</a></li>
+                <li><a href="{% url 'libros' %}">Libros</a></li>
+                <li><a href="{% url 'nosotros' %}">Nosotros</a></li>
+                <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+        
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <div class="box">
+                <h2>Bienvenido a la Biblioteca</h2>
+            </div>
+            <p>Explora nuestra colección de libros y mucho más.</p>
+        </section>
+        <section>
+            <div class="destacados">
+                <h2>Libros Destacados</h2>
+                <div class="libro">
+                    <img src="{% static 'img/libro1.png' %}" alt="Libro 1">
+                    
+                </div>
+                <div class="libro">
+                    <img src="{% static 'img/libro2.png' %}" alt="Libro 2">
+                    
+                </div>
+                <!-- Añade más libros destacados aquí -->
+            </div>
+            
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Biblioteca CEB. Todos los derechos reservados.</p>
+    </footer>
+{% endblock %}

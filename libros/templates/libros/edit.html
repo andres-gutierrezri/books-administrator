@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Libro</title>
+</head>
+<body>
+    <h1>Editar Libro</h1>
+    <form action="{{ url_for('edit_book', ITEM=libro['ITEM']) }}" method="POST">
+        <label for="isbn">isbn:</label>
+        <input type="text" id="isbn" name="isbn" value="{{ libro['isbn'] }}">
+    
+        <label for="CodigodeBarras">CodigodeBarras:</label>
+        <input type="text" id="CodigodeBarras" name="CodigodeBarras" value="{{ libro['CodigodeBarras'] }}">
+    
+        <label for="NoTopografico">NoTopografico:</label>
+        <input type="text" id="NoTopografico" name="NoTopografico" value="{{ libro['NoTopografico'] }}">
+    
+        <label for="Titulo">Titulo:</label>
+        <input type="text" id="Titulo" name="Titulo" value="{{ libro['Titulo'] }}">
+
+        <label for="Autor">Autor:</label>
+        <input type="text" id="Autor" name="Autor" value="{{ libro['Autor'] }}">
+    
+        <label for="Ciudad">Ciudad:</label>
+        <input type="text" id="Ciudad" name="Ciudad" value="{{ libro['Ciudad'] }}">
+    
+        <label for="Editorial">Editorial:</label>
+        <input type="text" id="Editorial" name="Editorial" value="{{ libro['Editorial'] }}">
+    
+        <label for="Fecha">Fecha:</label>
+        <input type="text" id="Fecha" name="Fecha" value="{{ libro['Fecha'] }}">
+
+        <label for="Edicion">Edicion:</label>
+        <input type="text" id="Edicion" name="Edicion" value="{{ libro['Edicion'] }}">
+    
+        <label for="Pagsovols">Pagsovols:</label>
+        <input type="text" id="Pagsovols" name="Pagsovols" value="{{ libro['Pagsovols'] }}">
+    
+        <label for="Ejemplares">Ejemplares:</label>
+        <input type="text" id="Ejemplares" name="Ejemplares" value="{{ libro['Ejemplares'] }}">
+    
+        <label for="Genero">Genero:</label>
+        <input type="text" id="Genero" name="Genero" value="{{ libro['Genero'] }}">
+    
+        <button type="submit">Actualizar</button>
+    </form>
+</body>
+</html>

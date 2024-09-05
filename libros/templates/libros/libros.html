@@ -1,0 +1,188 @@
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/libros.css' %}">
+{% endblock %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Biblioteca CEB</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/c60764b4ad.js" crossorigin="anonymous"></script>
+        
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+
+    </head>
+    <header>
+        <h1>Biblioteca CEB</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Inicio</a></li>
+                <li><a href="{% url 'libros' %}">Libros</a></li>
+                <li><a href="{% url 'nosotros' %}">Nosotros</a></li>
+                <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container-fluid row">
+        <!-- Botón que abre el cuadro modal -->
+        <div class="col-12 text-end p-3">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarLibroModal">
+                Agregar Libro
+            </button>
+        </div>
+        <!-- Modal de Agregar Libro -->
+        <div class="modal fade" id="agregarLibroModal" tabindex="-1" aria-labelledby="agregarLibroModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="agregarLibroModalLabel">Agregar Libro</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Formulario para agregar el libro -->
+                        <form id="agregarLibroForm" method="POST" action="{% url 'guardar_libro' %}">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="ISBN" class="form-label">ISBN</label>
+                                <input type="text" class="form-control" id="ISBN" name="ISBN" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="CodigodeBarras" class="form-label">Código de Barras</label>
+                                <input type="text" class="form-control" id="CodigodeBarras" name="CodigodeBarras" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="NoTopografico" class="form-label">Número Topográfico</label>
+                                <input type="text" class="form-control" id="NoTopografico" name="NoTopografico" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Titulo" class="form-label">Título</label>
+                                <input type="text" class="form-control" id="Titulo" name="Titulo" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Autor" class="form-label">Autor</label>
+                                <input type="text" class="form-control" id="Autor" name="Autor" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Ciudad" class="form-label">Ciudad</label>
+                                <input type="text" class="form-control" id="Ciudad" name="Ciudad" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Editorial" class="form-label">Editorial</label>
+                                <input type="text" class="form-control" id="Editorial" name="Editorial" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Fecha" class="form-label">Fecha</label>
+                                <input type="date" class="form-control" id="Fecha" name="Fecha" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Edicion" class="form-label">Edición</label>
+                                <input type="text" class="form-control" id="Edicion" name="Edicion" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Pagsovols" class="form-label">Páginas o Volúmenes</label>
+                                <input type="text" class="form-control" id="Pagsovols" name="Pagsovols" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Ejemplares" class="form-label">Ejemplares</label>
+                                <input type="text" class="form-control" id="Ejemplares" name="Ejemplares" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Genero" class="form-label">Género</label>
+                                <input type="text" class="form-control" id="Genero" name="Genero" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Ubicacion" class="form-label">Ubicación</label>
+                                <input type="text" class="form-control" id="Ubicacion" name="Ubicacion" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary" form="agregarLibroForm">Guardar Libro</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla de libros -->
+        <table id="librosTable" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>ISBN</th>
+                    <th>CodigodeBarras</th>
+                    <th>NoTopografico</th>
+                    <th>Titulo</th>
+                    <th>Autor</th>
+                    <th>Ciudad</th>
+                    <th>Editorial</th>
+                    <th>Fecha</th>
+                    <th>Edicion</th>
+                    <th>Pagsovols</th>
+                    <th>Ejemplares</th>
+                    <th>Genero</th>
+                    <th>Ubicacion</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for libro in libros %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ libro.ISBN }}</td>
+                        <td>{{ libro.CodigodeBarras }}</td>
+                        <td>{{ libro.NoTopografico }}</td>
+                        <td>{{ libro.Titulo }}</td>
+                        <td>{{ libro.Autor }}</td>
+                        <td>{{ libro.Ciudad }}</td>
+                        <td>{{ libro.Editorial }}</td>
+                        <td>{{ libro.Fecha }}</td>
+                        <td>{{ libro.Edicion }}</td>
+                        <td>{{ libro.Pagsovols }}</td>
+                        <td>{{ libro.Ejemplares }}</td>
+                        <td>{{ libro.Genero }}</td>
+                        <td>{{ libro.Ubicacion }}</td>
+                        <td>
+                            <!-- Formulario para editar -->
+                            <form method="GET" action="{% url 'editar_libro' libro.id %}" style="display:inline;">
+                                <button type="submit" class="btn btn-primary">✏️</button>
+                            </form>
+                        
+                            <!-- Formulario para eliminar -->
+                            <form method="POST" action="{% url 'eliminar_libro' libro.id %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este libro?');">🗑️</button>
+                            </form>
+                        </td>
+                        
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        
+
+        <script>
+            $(document).ready(function() {
+                $('#librosTable').DataTable({
+                    "paging": true,
+                    "searching": true,
+                    "ordering": true,
+                    "pageLength": 20
+                });
+            });
+        </script>
+    </div>
+</html>
+{% endblock %}
+
+
