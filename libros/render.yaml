@@ -1,22 +1,21 @@
-databases:
-  - name: biblioteca_ceb
-    plan: free
-    databaseName: biblioteca_ceb
-    user: mysite
-
 services:
   - type: web
-    plan: free
     name: biblioteca_ceb
-    runtime: python
-    buildCommand: "./build.sh"
-    startCommand: "python -m gunicorn biblioteca_ceb.asgi:application -k uvicorn.workers.UvicornWorker"
+    env: python
+    plan: free  
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn biblioteca_ceb.wsgi:application --worker-tmp-dir /dev/shm"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: mysitedb
+          name: biblioteca_ceb
           property: connectionString
-      - key: SECRET_KEY
-        generateValue: true
-      - key: WEB_CONCURRENCY
-        value: 4
+      - key: DJANGO_SECRET_KEY
+        sync: false # Sync significa que puedes actualizar el valor sin hacer redeploy; pon false para producción
+        value: tu-secreto-para-produccion
+    autoDeploy: true
+    healthCheckPath: /
+    region: oregon
+    buildScript: ./render-build.sh
+    dockerfilePath: Dockerfile
+    rootDir: .
