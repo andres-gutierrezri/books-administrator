@@ -3,7 +3,7 @@ import os
 import django
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myproject.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'biblioteca_ceb.settings')
 django.setup()
 
 from django.contrib.sessions.models import Session
