@@ -24,9 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2s@k+x29)jyqm5n+1wr1s@latrw@s3s45q6j#0(^1-ngvo6b+^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False   
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'https://biblioteca-ceb.onrender.com']
+
 
 
 # Application definition
@@ -80,14 +81,18 @@ WSGI_APPLICATION = 'biblioteca_ceb.wsgi.application'
 
 import dj_database_url
 
-# Replace the SQLite DATABASES configuration with PostgreSQL:
+
 DATABASES = {
-    'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default='postgresql://postgres:postgres@localhost:5432/mysite',
-        conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'biblioteca_ceb',  
+        'USER': 'root',                 
+        'PASSWORD': '',           
+        'HOST': 'localhost',                
+        'PORT': '3306',                       
+    }
 }
+
 
 
 
@@ -127,16 +132,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-
-
-
 STATIC_URL = '/static/'
+
+
+
 if not DEBUG:
     STATICFILES_DIRS = [BASE_DIR / "static",]
     STATIC_ROOT = BASE_DIR / "staticfiles"
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-#STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
 
 
 
