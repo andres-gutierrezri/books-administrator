@@ -10,11 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from pathlib import Path
 import os
+from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2s@k+x29)jyqm5n+1wr1s@latrw@s3s45q6j#0(^1-ngvo6b+^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False   
+DEBUG = True 
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'https://biblioteca-ceb.onrender.com']
 
@@ -138,7 +138,7 @@ STATIC_URL = '/static/'
 
 if not DEBUG:
     STATICFILES_DIRS = [BASE_DIR / "static",]
-    STATIC_ROOT = BASE_DIR / "staticfiles"
+    STATIC_ROOT = os.path.join(BASE_DIR, 'css')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
