@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2s@k+x29)jyqm5n+1wr1s@latrw@s3s45q6j#0(^1-ngvo6b+^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True 
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'https://biblioteca-ceb.onrender.com']
 
@@ -134,14 +134,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
+if DEBUG:
+    STATICFILES_DIRS = [BASE_DIR / "static"]
 
 if not DEBUG:
-    STATICFILES_DIRS = [BASE_DIR / "static",]
-    STATIC_ROOT = os.path.join(BASE_DIR, 'css')
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
 
 
 
