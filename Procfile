@@ -1,0 +1,1 @@
+web: python manage.py collectstatic && python manage.py makemigrations && python manage.py migrate && gunicorn biblioteca_ceb.wsgi:application --workers 3 --log-file -
