@@ -6,20 +6,26 @@
 {% block content %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Biblioteca CEB</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+
         <script src="https://kit.fontawesome.com/c60764b4ad.js" crossorigin="anonymous"></script>
         
         <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
     </head>
     <header>
         <h1>Biblioteca CEB</h1>
@@ -169,7 +175,23 @@
             </tbody>
         </table>
 
-        
+        <div class="pagination">
+            <span class="step-links">
+              {% if libros.has_previous %}
+                <a href="?page=1">&laquo; Primera</a>
+                <a href="?page={{ libros.previous_page_number }}">Anterior</a>
+              {% endif %}
+          
+              <span class="current">
+                Página {{ libros.number }} de {{ libros.paginator.num_pages }}.
+              </span>
+          
+              {% if libros.has_next %}
+                <a href="?page={{ libros.next_page_number }}">Siguiente</a>
+                <a href="?page={{ libros.paginator.num_pages }}">Última &raquo;</a>
+              {% endif %}
+            </span>
+          </div>
 
         <script>
             $(document).ready(function() {
@@ -177,7 +199,48 @@
                     "paging": true,
                     "searching": true,
                     "ordering": true,
-                    "pageLength": 20
+                    "info": true,
+                    "responsive": {
+                        "details": true
+                    },
+                    "lengthMenu": [5, 10, 20, 50, 100],  // Opciones de paginación
+                    "pageLength": 10,
+                    "scrollX": true,
+                    "autoWidth": true,
+                    "columnDefs": [
+                        { width: '20%', targets: 0 },
+                        { width: '100%', targets: 4 },
+                        { width: '50%', targets: 5 },
+                        // Ajustar el ancho de otras columnas según sea necesario
+                    ],
+                    "columnDefs": [
+                        { "responsivePriority": 1, "targets": 4 },  // Prioridad más alta
+                        { "responsivePriority": 2, "targets": 5 },  // Prioridad más baja
+                    ],
+                    "language": {
+                        "sProcessing":     "Procesando...",
+                        "sLengthMenu":     "Mostrar _MENU_ registros",
+                        "sZeroRecords":    "No se encontraron resultados",
+                        "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix":    "",
+                        "sSearch":         "Buscar:",
+                        "sUrl":            "",
+                        "sInfoThousands":  ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst":    "Primero",
+                            "sLast":     "Último",
+                            "sNext":     "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+                    },
                 });
             });
         </script>
