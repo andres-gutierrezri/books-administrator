@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Libro(models.Model):
     ISBN = models.CharField(max_length=13)
     CodigodeBarras = models.CharField(max_length=100)
@@ -17,5 +18,3 @@ class Libro(models.Model):
 
     def __str__(self):
         return self.Titulo
-    
-

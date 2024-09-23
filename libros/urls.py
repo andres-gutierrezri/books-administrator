@@ -13,6 +13,3 @@ urlpatterns = [
     path('libros/editar/<int:libro_id>/', views.editar_libro, name='editar_libro'),
     path('libros/eliminar/<int:libro_id>/', views.eliminar_libro, name='eliminar_libro'),
 ]
-
-
-
