@@ -40,7 +40,7 @@ SECRET_KEY = 'django-insecure-2s@k+x29)jyqm5n+1wr1s@latrw@s3s45q6j#0(^1-ngvo6b+^
 # Se recomienda que DEBUG sea True en desarrollo
 DEBUG = not IS_DEPLOYED
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '0.0.0.0', 'books-administrator.up.railway.app']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '0.0.0.0:8080', 'books-administrator.up.railway.app']
 
 CSRF_TRUSTED_ORIGINS = ['http://*', 'https://books-administrator.up.railway.app']  
 
