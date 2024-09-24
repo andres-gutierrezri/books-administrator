@@ -1,5 +1,5 @@
 body {
-    background-image: url("/static/img/fondo-biblioteca.jpg");
+    background-image: url("https://books-administrator.s3.amazonaws.com/publico/fondos/biblioteca.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
